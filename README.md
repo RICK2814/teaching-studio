@@ -23,8 +23,23 @@ Prerequisites: **Node.js 18+** and **npm** on Windows.
 
 ```powershell
 git clone https://github.com/RICK2814/teaching-studio.git
+```
+
+Open the project folder:
+
+```powershell
 cd teaching-studio
+```
+
+Install dependencies:
+
+```powershell
 npm install
+```
+
+Start the app in development mode:
+
+```powershell
 npm run dev
 ```
 
@@ -100,9 +115,24 @@ ships prebuilt binaries; `ffmpeg-static` ships a prebuilt `ffmpeg.exe`).
 
 ```powershell
 git clone https://github.com/RICK2814/teaching-studio.git
+```
+
+Open the project folder:
+
+```powershell
 cd teaching-studio
+```
+
+Install dependencies:
+
+```powershell
 npm install
-npm run dev        # run in development with hot reload
+```
+
+Start the app:
+
+```powershell
+npm run dev
 ```
 
 To produce a distributable Windows installer:
