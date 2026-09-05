@@ -2,11 +2,19 @@ appId: com.teachingstudio.app
 productName: Teaching Studio
 directories:
   output: release
+
+# Only package the compiled Electron app and runtime resources.
+# Development dependencies, source files, and build artifacts are not included.
 files:
   - out/**/*
+  - '!**/*.map'
+
 extraResources:
   - from: resources
     to: resources
+
+asar: true
+
 win:
   target:
     - target: nsis
@@ -14,7 +22,12 @@ win:
         - x64
   icon: resources/icon.ico
   sign: false
+  forceCodeSigning: false
+
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Teaching Studio
+  perMachine: false
