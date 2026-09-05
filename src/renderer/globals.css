@@ -12,8 +12,202 @@ body {
   color: #e7e9ee;
   font-family: 'Segoe UI', ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-thumb { background: #242938; border-radius: 8px; }
+/* -------------------------------------------------------------------------- */
+/* Premium Teaching Studio motion system                                     */
+/* -------------------------------------------------------------------------- */
+
+@keyframes studio-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes studio-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes studio-scale-in {
+  from { opacity: 0; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes studio-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(99, 102, 241, 0), 0 0 0 rgba(168, 85, 247, 0); }
+  50% { box-shadow: 0 0 24px rgba(99, 102, 241, .16), 0 0 48px rgba(168, 85, 247, .08); }
+}
+
+@keyframes studio-logo-pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.06); filter: brightness(1.12); }
+}
+
+@keyframes studio-record-pulse {
+  0%, 100% { opacity: .72; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.035); }
+}
+
+@keyframes studio-scan {
+  from { background-position: 0 0; }
+  to { background-position: 180px 0; }
+}
+
+/* App entrance */
+.h-screen.flex.flex-col {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    radial-gradient(circle at 8% 0%, rgba(99, 102, 241, .07), transparent 28%),
+    radial-gradient(circle at 92% 100%, rgba(168, 85, 247, .06), transparent 28%);
+  animation: studio-fade-in .45s ease-out both;
+}
+
+/* Top bar */
+.h-screen.flex.flex-col > div:first-child {
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(11, 13, 18, .78);
+  box-shadow: 0 1px 0 rgba(255,255,255,.03), 0 12px 32px rgba(0,0,0,.16);
+  animation: studio-fade-in .5s ease-out both;
+}
+
+.h-screen.flex.flex-col > div:first-child > div:first-child > div:first-child {
+  animation: studio-logo-pulse 3.6s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(99, 102, 241, .18);
+}
+
+/* A compact About accent in the top bar. The dashboard keeps the existing
+   controls intact while surfacing product identity without adding layout code. */
+.h-screen.flex.flex-col > div:first-child::after {
+  content: 'About  •  Teaching Studio 1.0.0';
+  position: absolute;
+  right: 18px;
+  bottom: -31px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  background: rgba(18, 21, 29, .88);
+  color: rgba(231,233,238,.56);
+  font-size: 10px;
+  letter-spacing: .04em;
+  pointer-events: none;
+  opacity: .72;
+  transform: translateY(-4px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.h-screen.flex.flex-col > div:first-child:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered panel entrance */
+.h-screen.flex.flex-col > div:nth-child(2) > div > * {
+  animation: studio-fade-up .55s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(1) { animation-delay: .05s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(2) { animation-delay: .09s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(3) { animation-delay: .13s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(4) { animation-delay: .17s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(5) { animation-delay: .21s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(6) { animation-delay: .25s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(7) { animation-delay: .29s; }
+.h-screen.flex.flex-col > div:nth-child(2) > div > *:nth-child(8) { animation-delay: .33s; }
+
+/* Cards / panels */
+.h-screen.flex.flex-col [class*='rounded-lg'],
+.h-screen.flex.flex-col [class*='rounded-xl'] {
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+}
+
+.h-screen.flex.flex-col [class*='rounded-lg']:hover,
+.h-screen.flex.flex-col [class*='rounded-xl']:hover {
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+.h-screen.flex.flex-col button {
+  transition: transform .16s ease, opacity .16s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.h-screen.flex.flex-col button:hover {
+  transform: translateY(-1px) scale(1.012);
+  filter: brightness(1.06);
+}
+
+.h-screen.flex.flex-col button:active {
+  transform: translateY(0) scale(.985);
+}
+
+/* Recording state */
+.h-screen.flex.flex-col .animate-pulse {
+  animation-duration: 1.15s;
+}
+
+.h-screen.flex.flex-col .text-studio-rec {
+  animation: studio-record-pulse 1.8s ease-in-out infinite;
+}
+
+/* Live preview receives a subtle cinematic sheen */
+.h-screen.flex.flex-col canvas {
+  transition: filter .3s ease, transform .3s ease;
+}
+
+.h-screen.flex.flex-col canvas:hover {
+  filter: brightness(1.04) saturate(1.04);
+}
+
+/* Recording primary action gets a quiet animated sheen without being distracting */
+.h-screen.flex.flex-col button.bg-studio-rec {
+  position: relative;
+  overflow: hidden;
+}
+
+.h-screen.flex.flex-col button.bg-studio-rec::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.10) 50%, transparent 100%);
+  background-size: 180px 100%;
+  transform: translateX(-190px);
+  animation: studio-scan 3.6s linear infinite;
+  pointer-events: none;
+}
+
+/* Inputs / selects */
+.h-screen.flex.flex-col input,
+.h-screen.flex.flex-col select {
+  transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+
+.h-screen.flex.flex-col input:focus,
+.h-screen.flex.flex-col select:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, .70) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, .12);
+}
+
+/* Better scrollbar */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #303548, #242938);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: #3a4157; }
 ::-webkit-scrollbar-track { background: transparent; }
+
+/* Respect users who disable motion at the OS level. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
