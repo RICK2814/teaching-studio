@@ -1,231 +1,340 @@
 # Teaching Studio
 
-A professional lecture-recording desktop app for Windows: record **anything on your
-screen** — YouTube, a browser, Google Docs/Sheets, a PDF, PowerPoint, VS Code, any
-Windows app — while you appear as a small, professional, circular webcam bubble
-floating on top. No OBS, no green screen, no manual scene setup.
+> A Windows-first desktop studio for professional lecture recording — capture your screen, keep a webcam bubble on top, replace the background, and export a finished MP4 without OBS.
 
-## Quick start
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6.svg)](https://www.microsoft.com/windows/)
+[![Electron](https://img.shields.io/badge/Electron-30-47848F.svg)](https://www.electronjs.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-### Download the Windows app
+Teaching Studio is designed for teachers, educators, trainers, and creators who want to record lessons from any Windows application while appearing in a polished webcam bubble.
 
-Download the latest portable Windows release from the
-[GitHub Releases page](https://github.com/RICK2814/teaching-studio/releases/latest).
-Extract the ZIP file, then run **Teaching Studio.exe**. No installer or separate
-runtime setup is required.
+## ✨ Features
 
-Direct download for v1.0.0:
+- 🖥️ **Full-screen recording** — record YouTube, browsers, PDFs, PowerPoint, VS Code, and other Windows applications.
+- 🎥 **Floating webcam bubble** — transparent, always-on-top camera overlay that stays visible while you teach.
+- ✂️ **Background replacement** — segmentation-based background removal with presets and custom backgrounds.
+- 🎙️ **Microphone + system audio** — configure lecture audio directly from the dashboard.
+- ⚡ **Hardware-aware encoding** — FFmpeg finalization tries available hardware encoders before falling back to software encoding.
+- 💾 **Crash-safe recording chunks** — recording data is written incrementally so interrupted sessions can leave recoverable temporary media.
+- ⌨️ **Global hotkeys** — quick recording and camera/microphone controls while teaching.
+- 🪟 **Native Windows experience** — packaged as a Windows x64 Electron application; no Python runtime is required.
+
+## 📦 Download the Windows App
+
+The easiest way to use Teaching Studio is to download the latest packaged release:
+
+**[Download the latest Windows release](https://github.com/RICK2814/teaching-studio/releases/latest)**
+
+### Current release
+
+**v1.0.0** — Windows portable release.
+
+Download:
+
 [Teaching-Studio-1.0.0-win-x64-portable.zip](https://github.com/RICK2814/teaching-studio/releases/download/v1.0.0/Teaching-Studio-1.0.0-win-x64-portable.zip)
 
-### Run from source
+### Portable installation
 
-Prerequisites: **Node.js 18+** and **npm** on Windows.
+1. Download the `win-x64-portable.zip` package.
+2. Extract the ZIP to a folder of your choice.
+3. Launch **Teaching Studio.exe**.
+4. Complete the first-run camera, microphone, preview, background, and quality setup.
+
+The portable release does not require a separate Node.js, Python, or Electron runtime.
+
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Desktop runtime | Electron 30 |
+| UI | React 18 |
+| Language | TypeScript 5 |
+| Build tool | electron-vite + Vite |
+| Styling | Tailwind CSS |
+| Person segmentation | MediaPipe Tasks Vision |
+| Recording | `getDisplayMedia()` + MediaRecorder |
+| Video processing | FFmpeg via `ffmpeg-static` |
+| Persistent settings | `electron-store` |
+| Packaging | electron-builder |
+| Windows target | x64 / NSIS |
+
+## 🧠 Architecture
+
+Teaching Studio uses a native desktop-overlay approach instead of software-only webcam compositing.
+
+```text
+┌───────────────────────────────┐
+│        Windows Desktop        │
+│                               │
+│  Any App / Browser / PDF      │
+│              +                │
+│   Transparent Webcam Window   │
+└───────────────┬───────────────┘
+                │
+                ▼
+       Screen Capture Pipeline
+          (getDisplayMedia)
+                │
+                ▼
+       MediaRecorder → WebM
+                │
+                ▼
+          FFmpeg Finalize
+                │
+                ▼
+            MP4 (H.264/AAC)
+```
+
+The webcam bubble is implemented as a real transparent, always-on-top Windows window. During recording, the screen capture sees the desktop as composed by Windows, allowing the webcam bubble to become part of the captured frames without a separate screen/camera synchronization pipeline.
+
+## 🚀 Development Setup
+
+### Requirements
+
+- Windows 10 or Windows 11 recommended for real device testing
+- Node.js 18+
+- npm
+- Git
+
+No Python installation or separate FFmpeg installation is required for the pinned project dependencies.
+
+### Clone the repository
 
 ```powershell
 git clone https://github.com/RICK2814/teaching-studio.git
-```
-
-Open the project folder:
-
-```powershell
 cd teaching-studio
 ```
 
-Install dependencies:
+### Install dependencies
 
 ```powershell
 npm install
 ```
 
-Start the app in development mode:
+### Run in development mode
 
 ```powershell
 npm run dev
 ```
 
-The `npm run dev` command starts the Electron desktop app with hot reload.
+This launches the Electron application with hot reload.
 
-## Why this architecture works (read this first)
+## 🧰 Project Commands
 
-The single trickiest requirement in the spec is: *the webcam bubble must be baked
-into the final recording, with true per-pixel transparency outside the circle, and
-the teacher must be free to switch between any Windows application.*
+Run commands from the project root:
 
-Rather than manually compositing a webcam video track onto a screen video track in
-software (fragile, and hard to keep in perfect sync), this app uses a much more
-robust trick:
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the Electron app in development mode |
+| `npm run typecheck` | Run TypeScript checks without emitting files |
+| `npm run build` | Build the Electron main, preload, and renderer bundles |
+| `npm run dist` | Build and package a Windows x64 distributable |
+| `npm run dist:dir` | Create an unpacked Windows build for smoke testing |
 
-1. The camera bubble is a **real Windows OS window** — frameless, `transparent: true`
-   (true RGBA alpha, not a color key), always-on-top, click-through except over the
-   opaque circle itself.
-2. When you record, the app captures **the entire screen** (via
-   `getDisplayMedia`, auto-routed to the whole primary display by the main process —
-   no picker prompt).
-3. Because the bubble window is real and on top, **Windows' own compositor already
-   draws it into every frame of the screen capture.** There is no separate merge step,
-   no frame-timing drift between screen and camera, and no black rectangle — the
-   captured pixels *are* the same pixels a viewer sitting at your desk would see.
+## 🏗️ Production Build
 
-This is also why there's no OBS requirement: OBS exists to do exactly this kind of
-compositing, but Windows' own window manager already does it for you once the bubble
-is a genuinely transparent top-most window.
+### Standard Windows build
 
-## Stack
-
-- **Electron 30** + **React 18** + **TypeScript** + **Tailwind CSS**
-- **@mediapipe/tasks-vision** (`ImageSegmenter`, GPU-accelerated selfie segmentation)
-  for real head/hair/shoulders/body segmentation — pure JS/WASM, **no Python
-  dependency**, so it can't break on Python 3.13 or MediaPipe's Python wheel support.
-- **ffmpeg-static** for encoding: MediaRecorder produces WebM (VP9/VP8 + Opus)
-  incrementally; on "Stop & Save" the app transcodes to H.264 + AAC in an MP4
-  container via FFmpeg, trying NVENC → QuickSync → AMF → libx264 in order so
-  recording never hard-fails if a specific hardware encoder isn't present.
-- **electron-store** for settings/history persistence (JSON on disk, no DB server).
-
-## Project layout
-
+```powershell
+npm run dist
 ```
+
+The packaging configuration writes artifacts to the `release/` directory.
+
+The Windows target is configured as an **x64 NSIS installer** with:
+
+- an optional installation directory
+- a desktop shortcut
+- the application icon from `resources/icon.ico`
+- unsigned Windows binaries by default
+
+### Unpacked smoke-test build
+
+For a quick test before creating an installer:
+
+```powershell
+npm run dist:dir
+```
+
+The unpacked application is generated under:
+
+```text
+release/win-unpacked/
+```
+
+## 📤 Release / Deployment
+
+Teaching Studio is distributed through **GitHub Releases**.
+
+### Manual release workflow
+
+```text
+Code changes
+    ↓
+git push
+    ↓
+npm run dist
+    ↓
+release/ artifacts
+    ↓
+Create a GitHub Release
+    ↓
+Upload the generated Windows package
+```
+
+A typical version flow is:
+
+```text
+v1.0.0
+v1.0.1
+v1.0.2
+```
+
+When you publish a new version, update the release tag and upload the newly generated package from `release/`.
+
+> GitHub Releases and GitHub Actions are separate concerns. A workflow file is only required when you want GitHub to build/package releases automatically.
+
+## 🎬 Using the App
+
+1. Complete the first-run wizard for camera, microphone, preview, background, and quality.
+2. Configure bubble shape, size, position, border, and shadow.
+3. Configure background replacement and audio options.
+4. Start recording from the dashboard or press **F9**.
+5. The dashboard minimizes and the webcam bubble remains on top while you teach.
+6. Drag the bubble into position, or lock it to prevent accidental movement.
+7. Use **F8** to toggle the camera and **F7** to toggle the microphone during recording.
+8. Press **F10** or choose **Stop & Save**.
+9. The recording is finalized as an MP4 in the configured output location; the default is `Videos/Teaching Studio/`.
+
+## ⌨️ Hotkeys
+
+| Hotkey | Action |
+|---|---|
+| `F9` | Start recording |
+| `F10` | Stop and save recording |
+| `F8` | Toggle camera |
+| `F7` | Toggle microphone |
+
+Hotkeys are currently represented in the application settings. A dedicated in-app hotkey editor is planned.
+
+## 📁 Project Structure
+
+```text
 src/
-  main/                    Electron main process
-    main.ts                App bootstrap, all IPC handlers
-    overlayWindow.ts        Transparent/always-on-top bubble window management
-    recorder.ts             Crash-safe chunk writer + FFmpeg finalize pipeline
-    store.ts                Settings + recording history persistence
-    hotkeys.ts               Global hotkey registration
-    env.ts
-    preload-dashboard.ts     contextBridge API for the dashboard window
-    preload-overlay.ts       contextBridge API for the overlay window
-  renderer/
-    globals.css              Tailwind entry
-    dashboard/                Main control-panel React app
-      App.tsx, ui.tsx, RecordingHistory.tsx, FirstRunWizard.tsx,
-      recordingEngine.ts      getDisplayMedia + mic capture + MediaRecorder
-    overlay/                  Camera-bubble React app (the transparent window's content)
-      App.tsx                 Camera stream lifecycle, render loop, drag handling
-      compositor.ts            Segmentation -> background composite -> shape mask -> border/shadow
-  shared/
-    types.ts                  Single source of truth: settings shape + all IPC channel names
+├── main/
+│   ├── main.ts                 # Electron main process and IPC handlers
+│   ├── overlayWindow.ts        # Transparent always-on-top webcam window
+│   ├── recorder.ts             # Chunk writer and FFmpeg finalize pipeline
+│   ├── store.ts                # Persistent settings/history
+│   ├── hotkeys.ts              # Global shortcut registration
+│   ├── env.ts                  # Environment helpers
+│   ├── preload-dashboard.ts    # Dashboard preload / bridge
+│   └── preload-overlay.ts      # Overlay preload / bridge
+│
+├── renderer/
+│   ├── dashboard/              # Main control panel
+│   │   ├── App.tsx
+│   │   ├── ui.tsx
+│   │   ├── RecordingHistory.tsx
+│   │   ├── FirstRunWizard.tsx
+│   │   └── recordingEngine.ts
+│   │
+│   ├── overlay/                # Webcam bubble UI
+│   │   ├── App.tsx
+│   │   └── compositor.ts
+│   │
+│   └── globals.css
+│
+└── shared/
+    └── types.ts                # Shared settings and IPC types
 ```
 
-## Building on Windows
+## 🧪 Verification Checklist
 
-Prerequisites: **Node.js 18+** and **npm**. Nothing else — no Python, no Visual
-Studio build tools should be required for the pinned dependency versions (Electron
-ships prebuilt binaries; `ffmpeg-static` ships a prebuilt `ffmpeg.exe`).
+Before shipping a new Windows build, test the packaged app on an actual Windows 10/11 machine.
 
-```powershell
-git clone https://github.com/RICK2814/teaching-studio.git
-```
+### Recording
 
-Open the project folder:
+- Camera ON/OFF during recording
+- Microphone ON/OFF during recording
+- Start and stop recording repeatedly
+- 5+ minute continuous recording
+- Audio/video synchronization after export
 
-```powershell
-cd teaching-studio
-```
+### Overlay
 
-Install dependencies:
+- Webcam bubble stays visible above teaching content
+- Dragging remains smooth
+- Lock Position prevents accidental movement
+- Bubble resizing updates correctly
+- No rectangular background around the transparent bubble
 
-```powershell
-npm install
-```
+### Background replacement
 
-Start the app:
+- Test every preset
+- Test a custom image
+- Check edges around hair, shoulders, and clothing
 
-```powershell
-npm run dev
-```
+### Application switching
 
-To produce a distributable Windows installer:
+Test switching between:
 
-```powershell
-npm run build       # compiles main/preload/renderer via electron-vite
-npm run dist         # packages + builds an NSIS installer into /release
-```
+- YouTube / browser
+- PDF
+- PowerPoint
+- Google Docs / Sheets
+- VS Code
+- Other Windows applications
 
-`npm run dist:dir` produces an unpacked build in `release/win-unpacked` if you just
-want to smoke-test the packaged app without building the installer.
+### Export
 
-### Bundling the segmentation model for offline use
+Confirm that the final MP4:
 
-By default the app loads the MediaPipe WASM runtime and the `selfie_segmenter.tflite`
-model from Google's CDN the first time segmentation runs, then the OS/Chromium HTTP
-cache keeps it available offline afterward. If you need a fully offline first-run
-(e.g. air-gapped classroom machines), download these once and bundle them under
-`resources/mediapipe/`, then point `WASM_BASE` and `MODEL_URL` in
-`src/renderer/overlay/compositor.ts` at `file://` paths into
-`process.resourcesPath`:
+- Opens in a standard media player
+- Contains the expected audio
+- Has synchronized audio/video
+- Contains the webcam bubble in the recorded frames
+- Does not show unexpected green fringing or a rectangular webcam box
 
-- WASM runtime: `@mediapipe/tasks-vision` npm package ships a `wasm/` folder you can
-  copy directly — no download needed, it's already in `node_modules`.
-- Model: `selfie_segmenter.tflite` from Google's MediaPipe model zoo (Selfie
-  Segmenter, "general" or "landscape" variant — either works here).
+## 📴 Offline MediaPipe Model
 
-### Windows Defender / SmartScreen
+By default, the segmentation runtime/model can be loaded from Google's CDN on first use and subsequently benefit from the Chromium/OS cache.
 
-Unsigned NSIS installers will trigger a SmartScreen warning on first run. For
-distribution beyond your own machine, code-sign the installer with an
-Authenticode certificate (add `certificateFile`/`certificateSubjectName` /
-`signingHashAlgorithms` to `electron-builder`'s `win` config in `package.json`).
+For fully offline first-run environments, bundle the MediaPipe WASM runtime and the `selfie_segmenter.tflite` model under `resources/mediapipe/`, then update the corresponding paths in `src/renderer/overlay/compositor.ts` to load those local resources.
 
-## Using the app
+## 🛡️ Windows Defender / SmartScreen
 
-1. First launch walks you through camera, mic, preview, background, and quality
-   (skippable/repeatable — settings persist to disk).
-2. Configure the bubble (shape, size, position, border, shadow), background
-   replacement, mic/system audio, and video quality on the dashboard.
-3. Click **Start Recording** (or press `F9`). After a 3-2-1 countdown the dashboard
-   minimizes and only the camera bubble remains on top — teach from anything.
-4. Drag the bubble anywhere; click **Lock Position** to stop accidental drags.
-   Toggle camera (`F8`) or mic (`F7`) mid-recording without stopping.
-5. Press `F10` or click **Stop & Save**; the dashboard restores and the app
-   transcodes to a single finished MP4 in your output folder (default
-   `Videos/Teaching Studio/`).
+The current Windows packaging configuration is **unsigned**. Unsigned Windows applications/installers may trigger SmartScreen warnings on first launch.
 
-Hotkeys are editable in `AppSettings.hotkeys` today via the settings JSON; a UI
-editor is a natural next addition (see Roadmap below).
+For broader distribution, sign the Windows package with an Authenticode certificate and configure the appropriate `electron-builder` signing settings.
 
-## Crash safety
+## ⚠️ Known Limitations
 
-`recorder.ts` writes every MediaRecorder chunk to disk as it arrives (default
-1-second timeslices), so a crash mid-lecture leaves a valid, playable `.webm` in
-`%AppData%/teaching-studio/recording-tmp/`. On next launch the app detects orphaned
-temp recordings and can offer recovery (finalize them into MP4 the same way a
-normal stop does).
+- **Multi-monitor presets:** bubble position presets currently target the primary display's work area, although dragging onto another display is supported.
+- **Hotkey editor:** hotkeys are configurable through stored settings, but there is not yet a full key-rebinding UI.
+- **Recovery UI:** crash recovery data can be detected, but a dedicated one-click recovery interface is still a roadmap item.
+- **Windows hardware validation:** the project is typechecked/build-verified, but hardware-specific capture, transparency, and encoder behavior should be validated on the target Windows machines before production use.
 
-## Testing checklist (map to the original spec's 25 items)
+## 🗺️ Roadmap
 
-Run through this on an actual Windows 10/11 machine before shipping:
+- [ ] In-app hotkey editor
+- [ ] One-click recording recovery UI
+- [ ] Improved multi-monitor presets
+- [ ] Automated Windows release builds
+- [ ] Code signing for production distribution
+- [ ] More webcam shapes and layout presets
+- [ ] Additional recording quality/export profiles
 
-1–4. Camera ON/OFF, Mic ON/OFF — toggle mid-recording, confirm bubble/audio react
-     immediately and screen recording is unaffected.
-5–8. Screen recording starts/stops cleanly; bubble visible while recording; camera
-     OFF hides the bubble but keeps recording; bubble drag works smoothly.
-9–10. Lock Position prevents drag; resizing via the Bubble Size slider updates
-      live.
-11–12. Background replacement (each preset) and a custom uploaded image both
-       render with the person cleanly separated from the real room.
-13–18. Switch between YouTube, another website, a PDF, PowerPoint, VS Code, and
-       back — bubble stays on top and click-through the whole time.
-19–21. Record 5+ minutes continuously; confirm the exported MP4 audio/video stay
-       in sync end to end.
-22–25. Inspect the exported MP4 frame-by-frame around the bubble: no green
-       fringing, no mirrored double-image, no rectangular box around the circle,
-       and the desktop stays fully clickable under the bubble throughout.
+## 🐛 Troubleshooting
 
-## Known limitations / roadmap
+See [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) for common issues and fixes.
 
-- **Multi-monitor**: bubble positions resolve against the *primary* display;
-  dragging onto a secondary monitor works, but presets ("Bottom Right", etc.)
-  always target the primary display's work area.
-- **Hotkey editor UI**: hotkeys are configurable in settings storage today but the
-  dashboard doesn't yet expose a rebind-by-pressing-a-key control.
-- **Recording recovery UI**: `recovery:found` is emitted with orphaned file paths
-  after a crash, but the dashboard doesn't yet render a recovery dialog — wire this
-  up to `finalizeRecording`-style logic if you want one-click recovery in the UI.
-- This project was developed and typechecked/build-verified on Linux; the transparent
-  layered window, per-pixel hit-testing, and hardware encoder paths are all
-  standard, well-supported Electron/Chromium/FFmpeg-on-Windows behavior, but they
-  have not been exercised on real Windows hardware as part of this delivery — run
-  the checklist above before relying on it for a real lecture.
+## 📄 License
 
-See `TROUBLESHOOTING.md` for common issues and fixes.
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+**Teaching Studio** — record your lesson, not your setup.
