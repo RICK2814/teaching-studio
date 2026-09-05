@@ -5,6 +5,31 @@ screen** — YouTube, a browser, Google Docs/Sheets, a PDF, PowerPoint, VS Code,
 Windows app — while you appear as a small, professional, circular webcam bubble
 floating on top. No OBS, no green screen, no manual scene setup.
 
+## Quick start
+
+### Download the Windows app
+
+Download the latest portable Windows release from the
+[GitHub Releases page](https://github.com/RICK2814/teaching-studio/releases/latest).
+Extract the ZIP file, then run **Teaching Studio.exe**. No installer or separate
+runtime setup is required.
+
+Direct download for v1.0.0:
+[Teaching-Studio-1.0.0-win-x64-portable.zip](https://github.com/RICK2814/teaching-studio/releases/download/v1.0.0/Teaching-Studio-1.0.0-win-x64-portable.zip)
+
+### Run from source
+
+Prerequisites: **Node.js 18+** and **npm** on Windows.
+
+```powershell
+git clone https://github.com/RICK2814/teaching-studio.git
+cd teaching-studio
+npm install
+npm run dev
+```
+
+The `npm run dev` command starts the Electron desktop app with hot reload.
+
 ## Why this architecture works (read this first)
 
 The single trickiest requirement in the spec is: *the webcam bubble must be baked
@@ -74,7 +99,7 @@ Studio build tools should be required for the pinned dependency versions (Electr
 ships prebuilt binaries; `ffmpeg-static` ships a prebuilt `ffmpeg.exe`).
 
 ```powershell
-git clone <this project>
+git clone https://github.com/RICK2814/teaching-studio.git
 cd teaching-studio
 npm install
 npm run dev        # run in development with hot reload
