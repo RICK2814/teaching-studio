@@ -1,0 +1,20 @@
+appId: com.teachingstudio.app
+productName: Teaching Studio
+directories:
+  output: release
+files:
+  - out/**/*
+extraResources:
+  - from: resources
+    to: resources
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: resources/icon.ico
+  sign: false
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
