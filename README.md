@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/hero-animation.svg" alt="Teaching Studio — animated recording pipeline" width="100%" />
+<img src="./docs/hero-animation.svg" alt="Teaching Studio — animated recording pipeline" width="100%" />
 
 # 🎬 Teaching Studio
 
@@ -28,10 +28,10 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 ## ⚡ See the system move
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/pipeline-animation.svg" alt="Animated Teaching Studio recording pipeline" width="100%" />
+<img src="./docs/pipeline-animation.svg" alt="Animated Teaching Studio recording pipeline" width="100%" />
 </div>
 
-> **Repository-hosted SVG animation:** the motion is part of the project itself, rather than a missing `demo.gif` placeholder.
+> **Repository-hosted visual pipeline:** the animation assets live inside the repository so the README does not depend on a placeholder demo URL.
 
 ---
 
@@ -61,7 +61,7 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 ## ✨ Highlights
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/highlights-animation.svg" alt="Animated Teaching Studio highlights" width="100%" />
+<img src="./docs/highlights-animation.svg" alt="Animated Teaching Studio highlights" width="100%" />
 </div>
 
 | Capability | Implementation |
@@ -82,7 +82,7 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 ## 🧠 Architecture
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/architecture-animation.svg" alt="Animated Teaching Studio architecture" width="100%" />
+<img src="./docs/architecture-animation.svg" alt="Animated Teaching Studio architecture" width="100%" />
 </div>
 
 Teaching Studio separates the dashboard, native overlay and recording finalization responsibilities instead of forcing everything into one renderer.
@@ -110,7 +110,7 @@ The webcam bubble is a **real transparent, always-on-top desktop window**. Windo
 ## 🔄 Recording Pipeline
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/pipeline-animation.svg" alt="Animated recording pipeline" width="100%" />
+<img src="./docs/pipeline-animation.svg" alt="Animated recording pipeline" width="100%" />
 </div>
 
 ```text
@@ -126,7 +126,7 @@ Incremental chunks keep temporary media recoverable when a recording is interrup
 ## 🧩 Features
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/features-animation.svg" alt="Animated Teaching Studio features" width="100%" />
+<img src="./docs/features-animation.svg" alt="Animated Teaching Studio features" width="100%" />
 </div>
 
 ### 🖥️ Full desktop recording
@@ -155,7 +155,7 @@ Control core recording actions without returning to the dashboard.
 ## 🛠️ Technology Stack
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/stack-animation.svg" alt="Animated Teaching Studio technology stack" width="100%" />
+<img src="./docs/stack-animation.svg" alt="Animated Teaching Studio technology stack" width="100%" />
 </div>
 
 | Layer | Technology |
@@ -203,7 +203,7 @@ No separate Python, Node.js or Electron runtime is required for the packaged por
 ## 🚀 Development Setup
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/development-animation.svg" alt="Animated Teaching Studio development workflow" width="100%" />
+<img src="./docs/development-animation.svg" alt="Animated Teaching Studio development workflow" width="100%" />
 </div>
 
 ### Requirements
@@ -249,7 +249,7 @@ npm run dev
 ## 📦 Build & Release
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/release-animation.svg" alt="Animated Teaching Studio build and release workflow" width="100%" />
+<img src="./docs/release-animation.svg" alt="Animated Teaching Studio build and release workflow" width="100%" />
 </div>
 
 ### Standard build
@@ -277,7 +277,7 @@ The Windows packaging configuration targets x64 and uses NSIS. Current binaries 
 ## 🎬 Usage
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/usage-animation.svg" alt="Animated Teaching Studio usage workflow" width="100%" />
+<img src="./docs/usage-animation.gif" alt="Animated Teaching Studio usage workflow" width="100%" />
 </div>
 
 ```text
@@ -300,7 +300,7 @@ Videos/Teaching Studio/
 ## ⌨️ Hotkeys
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/hotkeys-animation.svg" alt="Animated Teaching Studio hotkeys" width="100%" />
+<img src="./docs/hotkeys-animation.gif" alt="Animated Teaching Studio hotkeys" width="100%" />
 </div>
 
 | Key | Action |
@@ -317,7 +317,7 @@ A full in-app hotkey editor is planned.
 ## 📁 Project Structure
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/structure-animation.svg" alt="Animated Teaching Studio project structure" width="100%" />
+<img src="./docs/structure-animation.svg" alt="Animated Teaching Studio project structure" width="100%" />
 </div>
 
 ```text
@@ -355,7 +355,7 @@ src/
 ## 🧪 Verification
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/verification-animation.svg" alt="Animated Teaching Studio verification workflow" width="100%" />
+<img src="./docs/verification-animation.svg" alt="Animated Teaching Studio verification workflow" width="100%" />
 </div>
 
 Before shipping a Windows build, validate it on an actual Windows 10/11 machine.
@@ -420,7 +420,7 @@ For wider distribution, sign the Windows package with an Authenticode certificat
 ## 🗺️ Roadmap
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/roadmap-animation.svg" alt="Animated Teaching Studio roadmap" width="100%" />
+<img src="./docs/roadmap-animation.gif" alt="Animated Teaching Studio roadmap" width="100%" />
 </div>
 
 - [ ] In-app hotkey editor
@@ -447,7 +447,7 @@ Licensed under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/hero-animation.svg" alt="Teaching Studio animated footer" width="100%" />
+<img src="./docs/hero-animation.svg" alt="Teaching Studio animated footer" width="100%" />
 
 ### **Teaching Studio**
 **Capture. Teach. Export. Repeat.**
