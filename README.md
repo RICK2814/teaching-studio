@@ -36,20 +36,6 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 
 ---
 
-## 🎥 Real-world demo
-
-This is the workflow Teaching Studio is built for: teach from a real desktop application while the webcam remains visible as a floating, rounded, always-on-top bubble.
-
-<div align="center">
-<a href="https://youtu.be/mKT4hKMhg3k">
-<img src="https://img.youtube.com/vi/mKT4hKMhg3k/maxresdefault.jpg" alt="Teaching Studio real-world demo — desktop teaching with floating webcam overlay" width="92%" />
-</a>
-
-**▶️ Watch the full Teaching Studio demonstration**
-
-`Desktop content → Floating webcam → Teach → Stop → Export MP4`
-</div>
-
 ---
 
 ## 🧭 Navigation
