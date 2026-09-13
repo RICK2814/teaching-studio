@@ -17,6 +17,7 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 
 <p>
 <a href="https://github.com/RICK2814/teaching-studio/releases/latest">⬇️ Download</a> ·
+<a href="https://youtu.be/mKT4hKMhg3k">▶️ Watch demo</a> ·
 <a href="https://github.com/RICK2814/teaching-studio/issues">🐛 Report a bug</a> ·
 <a href="https://github.com/RICK2814/teaching-studio/issues">💡 Request a feature</a>
 </p>
@@ -35,6 +36,22 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 
 ---
 
+## 🎥 Real-world demo
+
+This is the workflow Teaching Studio is built for: teach from a real desktop application while the webcam remains visible as a floating, rounded, always-on-top bubble.
+
+<div align="center">
+<a href="https://youtu.be/mKT4hKMhg3k">
+<img src="https://img.youtube.com/vi/mKT4hKMhg3k/maxresdefault.jpg" alt="Teaching Studio real-world demo — desktop teaching with floating webcam overlay" width="92%" />
+</a>
+
+**▶️ Watch the full Teaching Studio demonstration**
+
+`Desktop content → Floating webcam → Teach → Stop → Export MP4`
+</div>
+
+---
+
 ## 🧭 Navigation
 
 <details open>
@@ -42,6 +59,7 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 
 - [✨ Highlights](#-highlights)
 - [🎞️ Animated pipeline](#-see-the-system-move)
+- [🎥 Real-world demo](#-real-world-demo)
 - [🧠 Architecture](#-architecture)
 - [🧩 Features](#-features)
 - [🛠️ Stack](#️-technology-stack)
@@ -280,14 +298,22 @@ The Windows packaging configuration targets x64 and uses NSIS. Current binaries 
 <img src="./docs/usage-animation.gif" alt="Animated Teaching Studio usage workflow" width="100%" />
 </div>
 
+### Real teaching flow
+
 ```text
 1. FIRST RUN → Camera · Microphone · Quality · Background
 2. OVERLAY  → Shape · Size · Position · Border · Shadow
 3. RECORD   → Dashboard → F9
-4. TEACH    → Bubble stays on top
+4. TEACH    → Bubble stays on top of the desktop content
 5. CONTROL  → F7 mic · F8 camera
 6. FINISH   → F10 → MP4
 ```
+
+### What the real demo shows
+
+Teaching Studio is designed for exactly this kind of session: a PDF, browser, presentation or code editor can remain the main teaching surface while the **floating webcam bubble stays visible above it**.
+
+<a href="https://youtu.be/mKT4hKMhg3k">▶️ Watch the real-world demo on YouTube</a>
 
 Default output location:
 
