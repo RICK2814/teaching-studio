@@ -28,12 +28,10 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 ## ⚡ See the system move
 
 <div align="center">
-
 <img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/pipeline-animation.svg" alt="Animated Teaching Studio recording pipeline" width="100%" />
-
 </div>
 
-> **These are real repository-hosted SVG animations — not placeholder `demo.gif` links.** They are rendered directly from `docs/`, so the README has an animation asset that actually exists in the project.
+> **Repository-hosted SVG animation:** the motion is part of the project itself, rather than a missing `demo.gif` placeholder.
 
 ---
 
@@ -62,6 +60,10 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 
 ## ✨ Highlights
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/highlights-animation.svg" alt="Animated Teaching Studio highlights" width="100%" />
+</div>
+
 | Capability | Implementation |
 |---|---|
 | 🖥️ Desktop capture | `getDisplayMedia()` |
@@ -73,30 +75,15 @@ A Windows-first desktop recording studio for educators, trainers and creators �
 | ⌨️ Hotkeys | F7 / F8 / F9 / F10 |
 | 🪟 Platform | Windows x64 Electron desktop app |
 
-### 🎯 The product idea
-
-```text
-OPEN LESSON
-    │
-    ▼
-┌─────────────────────────┐
-│    TEACHING STUDIO      │
-│                         │
-│ 🖥️ Screen capture       │
-│ 🎥 Camera overlay       │
-│ 🎨 Background removal   │
-│ 🎙️ Audio control        │
-└────────────┬────────────┘
-             │
-             ▼
-        🎞️ FINAL MP4
-```
-
 **Less setup. More teaching.**
 
 ---
 
 ## 🧠 Architecture
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/architecture-animation.svg" alt="Animated Teaching Studio architecture" width="100%" />
+</div>
 
 Teaching Studio separates the dashboard, native overlay and recording finalization responsibilities instead of forcing everything into one renderer.
 
@@ -118,62 +105,29 @@ flowchart LR
 
 The webcam bubble is a **real transparent, always-on-top desktop window**. Windows composes that overlay into the desktop, allowing the screen-capture path to capture a composed desktop view that already includes the camera bubble.
 
-That design keeps the primary recording flow simpler than implementing a separate synchronized screen + camera compositor.
-
 ---
 
 ## 🔄 Recording Pipeline
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/pipeline-animation.svg" alt="Animated recording pipeline" width="100%" />
+</div>
+
 ```text
-┌───────────────┐
-│ Select display│
-└───────┬───────┘
-        ▼
-┌───────────────────┐       ┌────────────────────┐
-│ getDisplayMedia() │◄─────►│ Camera overlay     │
-└────────┬──────────┘       │ transparent / top  │
-         ▼                  └────────────────────┘
-┌───────────────────┐
-│   MediaRecorder   │
-│    WebM chunks    │
-└────────┬──────────┘
-         ▼
-┌───────────────────┐
-│ Incremental writes│
-└────────┬──────────┘
-         ▼
-┌───────────────────┐
-│      FFmpeg       │
-│ HW encoder → SW   │
-└────────┬──────────┘
-         ▼
-┌───────────────────┐
-│     Final MP4     │
-│    H.264 / AAC    │
-└───────────────────┘
+Select display → getDisplayMedia() → MediaRecorder → WebM chunks → FFmpeg → final MP4
 ```
 
 ### 💾 Crash-aware media flow
 
-```text
-recording starts
-      │
-      ├── chunk 001 ─┐
-      ├── chunk 002 ─┤
-      ├── chunk 003 ─┼──► recoverable temporary media
-      ├── chunk 004 ─┤
-      └── chunk 005 ─┘
-                     │
-                     ▼
-                  finalize
-                     │
-                     ▼
-                  final.mp4
-```
+Incremental chunks keep temporary media recoverable when a recording is interrupted before finalization.
 
 ---
 
 ## 🧩 Features
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/features-animation.svg" alt="Animated Teaching Studio features" width="100%" />
+</div>
 
 ### 🖥️ Full desktop recording
 Capture YouTube, browsers, PDFs, PowerPoint, VS Code and other Windows applications.
@@ -200,6 +154,10 @@ Control core recording actions without returning to the dashboard.
 
 ## 🛠️ Technology Stack
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/stack-animation.svg" alt="Animated Teaching Studio technology stack" width="100%" />
+</div>
+
 | Layer | Technology |
 |---|---|
 | 🖥️ Desktop runtime | Electron 30 |
@@ -214,44 +172,18 @@ Control core recording actions without returning to the dashboard.
 | 📦 Packaging | electron-builder |
 | 🪟 Target | Windows x64 / NSIS |
 
-### 🔗 Runtime relationship
-
-```text
-React Renderer
-      │
-      ▼
-Preload Bridge
-      │
-      ▼
-Electron Main
-   ┌──┼───────────────┐
-   ▼  ▼               ▼
-Overlay  Recorder   Hotkeys
-   │      │             │
-   └──────┼─────────────┘
-          ▼
-       FFmpeg
-          │
-          ▼
-        MP4
-```
-
 ---
 
 ## 📦 Download
 
 <div align="center">
-
-<a href="https://github.com/RICK2814/teaching-studio/releases/latest">
-<img src="https://img.shields.io/badge/⬇️%20DOWNLOAD-LATEST%20WINDOWS%20BUILD-2563EB?style=for-the-badge" alt="Download latest Windows build" />
-</a>
+<a href="https://github.com/RICK2814/teaching-studio/releases/latest"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD-LATEST%20WINDOWS%20BUILD-2563EB?style=for-the-badge" alt="Download latest Windows build" /></a>
 
 ### Current release
 
 **v1.0.0 — Windows portable release**
 
 <a href="https://github.com/RICK2814/teaching-studio/releases/download/v1.0.0/Teaching-Studio-1.0.0-win-x64-portable.zip">Teaching-Studio-1.0.0-win-x64-portable.zip</a>
-
 </div>
 
 ### Portable install
@@ -269,6 +201,10 @@ No separate Python, Node.js or Electron runtime is required for the packaged por
 ---
 
 ## 🚀 Development Setup
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/development-animation.svg" alt="Animated Teaching Studio development workflow" width="100%" />
+</div>
 
 ### Requirements
 
@@ -308,34 +244,13 @@ npm run dev
 | `npm run dist` | Build a Windows x64 distributable |
 | `npm run dist:dir` | Build an unpacked Windows app for smoke testing |
 
-### 🧪 Developer loop
-
-```text
-EDIT
-  ↓
-TYPECHECK
-  ↓
-BUILD
-  ↓
-UNPACKED SMOKE TEST
-  ↓
-PACKAGE
-  ↓
-RELEASE
-```
-
 ---
 
-## 📤 Build & Release
+## 📦 Build & Release
 
-```mermaid
-flowchart LR
-    A[Code changes] --> B[git push]
-    B --> C[npm run dist]
-    C --> D[release/ artifacts]
-    D --> E[GitHub Release]
-    E --> F[Windows package]
-```
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/release-animation.svg" alt="Animated Teaching Studio build and release workflow" width="100%" />
+</div>
 
 ### Standard build
 
@@ -361,24 +276,17 @@ The Windows packaging configuration targets x64 and uses NSIS. Current binaries 
 
 ## 🎬 Usage
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/usage-animation.svg" alt="Animated Teaching Studio usage workflow" width="100%" />
+</div>
+
 ```text
-1. FIRST RUN
-   Camera · Microphone · Quality · Background
-
-2. OVERLAY
-   Shape · Size · Position · Border · Shadow
-
-3. RECORD
-   Dashboard → F9
-
-4. TEACH
-   Bubble stays on top
-
-5. CONTROL
-   F7 mic · F8 camera
-
-6. FINISH
-   F10 → MP4
+1. FIRST RUN → Camera · Microphone · Quality · Background
+2. OVERLAY  → Shape · Size · Position · Border · Shadow
+3. RECORD   → Dashboard → F9
+4. TEACH    → Bubble stays on top
+5. CONTROL  → F7 mic · F8 camera
+6. FINISH   → F10 → MP4
 ```
 
 Default output location:
@@ -390,6 +298,10 @@ Videos/Teaching Studio/
 ---
 
 ## ⌨️ Hotkeys
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/hotkeys-animation.svg" alt="Animated Teaching Studio hotkeys" width="100%" />
+</div>
 
 | Key | Action |
 |:---:|---|
@@ -403,6 +315,10 @@ A full in-app hotkey editor is planned.
 ---
 
 ## 📁 Project Structure
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/structure-animation.svg" alt="Animated Teaching Studio project structure" width="100%" />
+</div>
 
 ```text
 src/
@@ -437,6 +353,10 @@ src/
 ---
 
 ## 🧪 Verification
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/verification-animation.svg" alt="Animated Teaching Studio verification workflow" width="100%" />
+</div>
 
 Before shipping a Windows build, validate it on an actual Windows 10/11 machine.
 
@@ -499,6 +419,10 @@ For wider distribution, sign the Windows package with an Authenticode certificat
 
 ## 🗺️ Roadmap
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/roadmap-animation.svg" alt="Animated Teaching Studio roadmap" width="100%" />
+</div>
+
 - [ ] In-app hotkey editor
 - [ ] One-click recording recovery UI
 - [ ] Improved multi-monitor presets
@@ -523,7 +447,6 @@ Licensed under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-
 <img src="https://raw.githubusercontent.com/RICK2814/teaching-studio/main/docs/hero-animation.svg" alt="Teaching Studio animated footer" width="100%" />
 
 ### **Teaching Studio**
