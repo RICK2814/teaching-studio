@@ -1,1 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" role="img" aria-labelledby="t d"><title id="t">Animated Teaching Studio roadmap</title><desc id="d">A glowing progress path moves from shipped features through next milestones to production readiness.</desc><defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#050816"/><stop offset=".5" stop-color="#111827"/><stop offset="1" stop-color="#071a2b"/></linearGradient><linearGradient id="neon"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#60a5fa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><style>.c{fill:#0b1224;stroke:#334155;stroke-width:2}.txt{font:800 26px ui-monospace,monospace;fill:#e2e8f0}.sub{font:500 17px ui-monospace,monospace;fill:#94a3b8}.node{animation:p 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.beam{stroke:url(#neon);stroke-width:8;stroke-linecap:round;stroke-dasharray:18 26;animation:dash 1s linear infinite;filter:url(#glow)}.progress{stroke:url(#neon);stroke-width:5;stroke-linecap:round;stroke-dasharray:22 1000;animation:run 4.8s linear infinite}@keyframes dash{to{stroke-dashoffset:-44}}@keyframes p{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-12px);opacity:1}}@keyframes run{to{stroke-dashoffset:-900}}</style></defs><rect width="1600" height="620" rx="40" fill="url(#bg)"/><text x="90" y="88" class="txt" style="font-size:45px">ROADMAP · SHIP THE NEXT LAYER</text><text x="90" y="124" class="sub">A continuously moving product path: core → refinement → scale → production</text><path d="M150 330 H1410" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/><path d="M150 330 H1410" class="progress" fill="none"/><path d="M360 330H540 M730 330H910 M1100 330H1280" class="beam" fill="none"/><g transform="translate(70 205)"><rect width="240" height="170" rx="26" class="c node"/><text x="28" y="55" class="txt">01 · NOW</text><text x="28" y="92" class="sub">Desktop recording</text><text x="28" y="120" class="sub">Webcam overlay</text><text x="28" y="148" class="sub">FFmpeg export</text></g><circle cx="360" cy="330" r="17" fill="#22c55e" filter="url(#glow)" class="node"/><g transform="translate(480 205)"><rect width="240" height="170" rx="26" class="c node" style="animation-delay:.5s"/><text x="28" y="55" class="txt">02 · NEXT</text><text x="28" y="92" class="sub">Hotkey editor</text><text x="28" y="120" class="sub">Recovery UI</text><text x="28" y="148" class="sub">Multi-monitor</text></g><circle cx="760" cy="330" r="17" fill="#38bdf8" filter="url(#glow)" class="node" style="animation-delay:1s"/><g transform="translate(850 205)"><rect width="240" height="170" rx="26" class="c node" style="animation-delay:1s"/><text x="28" y="55" class="txt">03 · SCALE</text><text x="28" y="92" class="sub">Automated builds</text><text x="28" y="120" class="sub">Code signing</text><text x="28" y="148" class="sub">Export profiles</text></g><circle cx="1130" cy="330" r="17" fill="#818cf8" filter="url(#glow)" class="node" style="animation-delay:1.5s"/><g transform="translate(1200 205)"><rect width="300" height="170" rx="26" class="c node" style="animation-delay:1.5s"/><text x="28" y="55" class="txt">04 · SHIP</text><text x="28" y="92" class="sub">Polished UX</text><text x="28" y="120" class="sub">Signed distribution</text><text x="28" y="148" class="sub">Production ready</text></g><g transform="translate(560 475)"><rect width="480" height="54" rx="27" fill="#020617" stroke="#334155"/><circle cx="30" cy="27" r="9" fill="#22c55e" class="node"/><text x="55" y="35" class="sub">ROADMAP ENGINE</text><text x="220" y="35" class="sub">moving toward production</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 640" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest"><title id="t">Animated Teaching Studio roadmap</title>
+<desc id="d">A glowing progress path moves from shipped v1.0 features through in-progress, planned and long-term milestones.</desc>
+<defs>
+  <linearGradient id="rbg" x1="0" x2="1"><stop stop-color="#050816"/><stop offset=".5" stop-color="#111827"/><stop offset="1" stop-color="#071a2b"/></linearGradient>
+  <linearGradient id="rneon" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#60a5fa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+  <filter id="rglow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <style>
+    .c{fill:#0b1224;stroke:#334155;stroke-width:2}
+    .txt{font:800 22px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#e2e8f0}
+    .sub{font:500 14px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#94a3b8}
+    .head{font:800 40px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#fff}
+    .lead{font:500 17px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#94a3b8}
+    .pill{font:800 13px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .node{transform-box:fill-box;transform-origin:center;animation:rfloat 2.8s ease-in-out infinite}
+    .beam{stroke:url(#rneon);stroke-width:7;stroke-linecap:round;stroke-dasharray:16 22;animation:rdash 1s linear infinite;filter:url(#rglow)}
+    .progress{stroke:url(#rneon);stroke-width:5;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:rrun 6s ease-in-out infinite}
+    .check{stroke-dasharray:34;stroke-dashoffset:0}
+    .spinner{transform-box:fill-box;transform-origin:center;animation:rspin 2.2s linear infinite}
+    .ring{animation:rpulse 2s ease-in-out infinite}
+    .star{transform-box:fill-box;transform-origin:center;animation:rtwinkle 2.4s ease-in-out infinite}
+    @keyframes rfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes rdash{to{stroke-dashoffset:-38}}
+    @keyframes rrun{0%,8%{stroke-dashoffset:900}92%,100%{stroke-dashoffset:0}}
+    @keyframes rspin{to{transform:rotate(360deg)}}
+    @keyframes rpulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+    @keyframes rtwinkle{0%,100%{opacity:.4}50%{opacity:1}}
+  </style>
+</defs>
+<rect width="1600" height="640" rx="40" fill="url(#rbg)"/>
+<text x="90" y="86" class="head">ROADMAP</text>
+<text x="90" y="120" class="lead">Shipped in v1.0 → actively worked on → planned → long-term vision</text>
+<path d="M150 350 H1450" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+<path d="M150 350 H1450" class="progress" fill="none"/>
+<path d="M370 350H540 M810 350H980 M1180 350H1350" class="beam" fill="none"/>
+<g transform="translate(70 225)">
+  <rect width="250" height="180" rx="24" class="c node"/>
+  <circle cx="46" cy="44" r="20" fill="none" stroke="#22c55e" stroke-width="4"/><path d="M36 45l8 8 14-16" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="check"/>
+  <rect x="180" y="26" width="52" height="26" rx="13" fill="#022c22" stroke="#22c55e"/><text x="192" y="43" class="pill" fill="#4ade80">v1.0</text>
+  <text x="24" y="98" class="txt">SHIPPED</text><text x="24" y="128" class="sub">Desktop recording</text><text x="24" y="150" class="sub">Webcam overlay · FFmpeg</text>
+</g>
+<circle cx="370" cy="350" r="16" fill="#22c55e" filter="url(#rglow)" class="node"/>
+<g transform="translate(590 225)">
+  <rect width="220" height="180" rx="24" class="c node" style="animation-delay:.4s"/><circle cx="46" cy="44" r="18" fill="none" stroke="#38bdf8" stroke-width="4" class="ring"/><path d="M46 30v14l10 8" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" class="spinner"/>
+  <text x="24" y="98" class="txt">IN PROGRESS</text><text x="24" y="128" class="sub">Hotkey editor</text><text x="24" y="150" class="sub">Recovery UI</text>
+</g>
+<circle cx="810" cy="350" r="16" fill="#38bdf8" filter="url(#rglow)" class="node" style="animation-delay:.4s"/>
+<g transform="translate(1000 225)">
+  <rect width="180" height="180" rx="24" class="c node" style="animation-delay:.8s"/><circle cx="46" cy="44" r="18" fill="none" stroke="#818cf8" stroke-width="4"/><path d="M46 32v13l9 6" fill="none" stroke="#818cf8" stroke-width="4" stroke-linecap="round"/>
+  <text x="24" y="98" class="txt">PLANNED</text><text x="24" y="128" class="sub">Automated builds</text><text x="24" y="150" class="sub">Code signing</text>
+</g>
+<circle cx="1180" cy="350" r="16" fill="#818cf8" filter="url(#rglow)" class="node" style="animation-delay:.8s"/>
+<g transform="translate(1220 225)">
+  <rect width="230" height="180" rx="24" class="c node" style="animation-delay:1.2s"/><path d="M46 26l6 13 14 2-10 10 2 14-12-7-12 7 2-14-10-10 14-2z" fill="#a855f7" class="star"/>
+  <text x="24" y="98" class="txt">VISION</text><text x="24" y="128" class="sub">Polished UX</text><text x="24" y="150" class="sub">Signed distribution</text>
+</g>
+<circle cx="1450" cy="350" r="16" fill="#a855f7" filter="url(#rglow)" class="node" style="animation-delay:1.2s"/>
+<g transform="translate(560 500)">
+  <rect width="480" height="56" rx="28" fill="#020617" stroke="#334155"/><circle cx="30" cy="28" r="9" fill="#22c55e" class="ring"/><text x="55" y="36" class="sub">ROADMAP ENGINE</text><text x="230" y="36" class="sub">moving toward production</text>
+</g>
+</svg>
