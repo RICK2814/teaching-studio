@@ -1,1 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 560" role="img" aria-labelledby="t d"><title id="t">Animated Teaching Studio global hotkeys</title><desc id="d">Four keyboard keys animate in sequence to control recording.</desc><defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#050816"/><stop offset=".5" stop-color="#111827"/><stop offset="1" stop-color="#0b132b"/></linearGradient><linearGradient id="neon"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><style>.key{fill:#0b1224;stroke:#475569;stroke-width:4}.txt{font:800 28px ui-monospace,monospace;fill:#e2e8f0}.sub{font:500 17px ui-monospace,monospace;fill:#94a3b8}.press{animation:press 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.led{animation:led 4s ease-in-out infinite}.sweep{stroke:url(#neon);stroke-width:8;stroke-linecap:round;stroke-dasharray:20 24;animation:sweep 1s linear infinite;filter:url(#glow)}@keyframes press{0%,10%,100%{transform:translateY(0)}5%{transform:translateY(14px) scale(.97)}}@keyframes led{0%,10%,100%{opacity:.2}5%{opacity:1}}@keyframes sweep{to{stroke-dashoffset:-44}}</style></defs><rect width="1500" height="560" rx="38" fill="url(#bg)"/><text x="90" y="82" class="txt" style="font-size:44px">GLOBAL HOTKEYS</text><text x="90" y="118" class="sub">Press a key → trigger an action → keep teaching without touching the dashboard</text><g transform="translate(110 200)"><rect width="270" height="220" rx="30" class="key press"/><rect x="25" y="25" width="220" height="105" rx="20" fill="#020617" stroke="#334155"/><text x="105" y="92" class="txt">F9</text><text x="35" y="165" class="txt">START</text><text x="35" y="193" class="sub">recording</text><circle cx="220" cy="180" r="10" fill="#ef4444" class="led"/></g><path d="M395 310h100" class="sweep"/><g transform="translate(500 200)"><rect width="270" height="220" rx="30" class="key press" style="animation-delay:1s"/><rect x="25" y="25" width="220" height="105" rx="20" fill="#020617" stroke="#334155"/><text x="92" y="92" class="txt">F10</text><text x="35" y="165" class="txt">STOP + SAVE</text><text x="35" y="193" class="sub">finalize MP4</text><circle cx="220" cy="180" r="10" fill="#22c55e" class="led" style="animation-delay:1s"/></g><path d="M785 310h100" class="sweep"/><g transform="translate(890 200)"><rect width="220" height="220" rx="30" class="key press" style="animation-delay:2s"/><rect x="25" y="25" width="170" height="105" rx="20" fill="#020617" stroke="#334155"/><text x="82" y="92" class="txt">F8</text><text x="35" y="165" class="txt">CAMERA</text><text x="35" y="193" class="sub">toggle</text><circle cx="170" cy="180" r="10" fill="#38bdf8" class="led" style="animation-delay:2s"/></g><path d="M1125 310h80" class="sweep"/><g transform="translate(1210 200)"><rect width="180" height="220" rx="30" class="key press" style="animation-delay:3s"/><rect x="25" y="25" width="130" height="105" rx="20" fill="#020617" stroke="#334155"/><text x="68" y="92" class="txt">F7</text><text x="35" y="165" class="txt">MIC</text><text x="35" y="193" class="sub">toggle</text><circle cx="135" cy="180" r="10" fill="#f59e0b" class="led" style="animation-delay:3s"/></g><text x="545" y="500" class="sub">F9 → F10 → F8 → F7 · repeat</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 580" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest"><title id="t">Animated Teaching Studio global hotkeys</title>
+<desc id="d">Four keyboard keys press in sequence, each lighting an LED and icon tied to its recording action.</desc>
+<defs>
+  <linearGradient id="hbg" x1="0" x2="1"><stop stop-color="#050816"/><stop offset=".5" stop-color="#111827"/><stop offset="1" stop-color="#0b132b"/></linearGradient>
+  <linearGradient id="hneon" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+  <filter id="hglow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <style>
+    .base{fill:#020617;stroke:#1e293b;stroke-width:3}
+    .cap{fill:#0b1224;stroke:#475569;stroke-width:3}
+    .txt{font:800 30px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#e2e8f0}
+    .lbl{font:700 17px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#e2e8f0}
+    .sub{font:500 14px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#94a3b8}
+    .head{font:800 42px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#fff}
+    .lead{font:500 17px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#94a3b8}
+    .key{transform-box:fill-box;transform-origin:center;animation:hpress 4.8s ease-in-out infinite}
+    .led{animation:hled 4.8s ease-in-out infinite}
+    .glow{animation:hglowring 4.8s ease-in-out infinite}
+    .sweep{stroke:url(#hneon);stroke-width:6;stroke-linecap:round;stroke-dasharray:16 18;animation:hsweep .9s linear infinite;filter:url(#hglow)}
+    .waveA{transform-box:fill-box;transform-origin:bottom;animation:hwave 4.8s ease-in-out infinite}
+    .shutter{transform-box:fill-box;transform-origin:center;animation:hshutter 4.8s ease-in-out infinite}
+    @keyframes hpress{0%,8%,100%{transform:translateY(0)}4%{transform:translateY(10px)}}
+    @keyframes hled{0%,8%,100%{opacity:.18}4%{opacity:1}}
+    @keyframes hglowring{0%,8%,100%{opacity:0}4%{opacity:1}}
+    @keyframes hsweep{to{stroke-dashoffset:-34}}
+    @keyframes hwave{0%,8%,100%{transform:scaleY(.3)}4%{transform:scaleY(1)}}
+    @keyframes hshutter{0%,8%,100%{transform:scale(1)}4%{transform:scale(.55)}}
+  </style>
+</defs>
+<rect width="1600" height="580" rx="38" fill="url(#hbg)"/>
+<text x="90" y="82" class="head">GLOBAL HOTKEYS</text>
+<text x="90" y="118" class="lead">Press a key → trigger an action → keep teaching without touching the dashboard</text>
+<g transform="translate(110 190)">
+  <circle cx="115" cy="-24" r="30" fill="none" stroke="#ef4444" stroke-width="4" class="glow" filter="url(#hglow)"/>
+  <rect width="230" height="200" rx="22" class="base"/>
+  <rect x="8" y="0" width="230" height="200" rx="22" class="cap key"/>
+  <text x="30" y="72" class="txt">F9</text><circle cx="90" cy="60" r="10" fill="#ef4444" class="led"/>
+  <text x="30" y="130" class="lbl">START</text><text x="30" y="155" class="sub">recording</text>
+</g>
+<path d="M405 290h95" class="sweep"/>
+<g transform="translate(540 190)">
+  <circle cx="115" cy="-24" r="30" fill="none" stroke="#22c55e" stroke-width="4" class="glow" filter="url(#hglow)" style="animation-delay:1.2s"/>
+  <rect width="230" height="200" rx="22" class="base"/><rect x="8" y="0" width="230" height="200" rx="22" class="cap key" style="animation-delay:1.2s"/>
+  <text x="24" y="72" class="txt">F10</text><path d="M74 58l10 10 18-20" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="90" cy="60" r="10" fill="none" class="led" style="animation-delay:1.2s"/>
+  <text x="30" y="130" class="lbl">STOP + SAVE</text><text x="30" y="155" class="sub">finalize MP4</text>
+</g>
+<path d="M835 290h95" class="sweep"/>
+<g transform="translate(970 190)">
+  <circle cx="95" cy="-24" r="30" fill="none" stroke="#38bdf8" stroke-width="4" class="glow" filter="url(#hglow)" style="animation-delay:2.4s"/>
+  <rect width="190" height="200" rx="22" class="base"/><rect x="8" y="0" width="190" height="200" rx="22" class="cap key" style="animation-delay:2.4s"/>
+  <text x="24" y="72" class="txt">F8</text><circle cx="95" cy="60" r="18" fill="none" stroke="#38bdf8" stroke-width="4" class="shutter" style="animation-delay:2.4s"/><circle cx="95" cy="60" r="7" fill="#38bdf8"/>
+  <text x="24" y="130" class="lbl">CAMERA</text><text x="24" y="155" class="sub">toggle</text>
+</g>
+<path d="M1195 290h80" class="sweep"/>
+<g transform="translate(1310 190)">
+  <circle cx="75" cy="-24" r="30" fill="none" stroke="#f59e0b" stroke-width="4" class="glow" filter="url(#hglow)" style="animation-delay:3.6s"/>
+  <rect width="150" height="200" rx="22" class="base"/><rect x="8" y="0" width="150" height="200" rx="22" class="cap key" style="animation-delay:3.6s"/>
+  <text x="24" y="72" class="txt">F7</text>
+  <g transform="translate(90 34)"><rect x="0" y="14" width="6" height="10" fill="#f59e0b" class="waveA" style="animation-delay:3.6s"/><rect x="9" y="6" width="6" height="26" fill="#f59e0b" class="waveA" style="animation-delay:3.75s"/><rect x="18" y="0" width="6" height="34" fill="#f59e0b" class="waveA" style="animation-delay:3.9s"/><rect x="27" y="8" width="6" height="24" fill="#f59e0b" class="waveA" style="animation-delay:4.05s"/></g>
+  <text x="24" y="130" class="lbl">MIC</text><text x="24" y="155" class="sub">toggle</text>
+</g>
+<text x="600" y="510" class="lead">F9 → F10 → F8 → F7 · repeat</text>
+</svg>
